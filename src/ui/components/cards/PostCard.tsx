@@ -103,7 +103,7 @@ export const PostCard = ({post}: {
         }
     }
 
-    return <Card className="w-[500px]" key={post.id} id={post.id}>
+    return <Card className="w-full" key={post.id} id={post.id}>
         <CardHeader >
             <div className="w-full flex justify-between">
                 <div className="flex gap-2">

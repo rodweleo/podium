@@ -34,19 +34,19 @@ import { useToast } from "@/components/ui/use-toast"
     const onSubmit = async (values: z.infer<typeof CreatePostFormSchema>) => {
         setIsPublishing(true)
         const response = await publishPost(values);
-        console.log(response)
+        //console.log(response)
         if(response){
             form.reset();
             form.setValue("post_content", "")
             toast({
-                description: `Post published. ${response.id}.`
+                description: `Post published.`
             })
             setIsPublishing(false)
         }else{
             setIsPublishing(false)
         }
     }
-    return <Card className="max-w-[500px]">
+    return <Card className="w-full">
         <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)}>
     <CardContent className="flex flex-col gap-2 mt-5">

@@ -11,12 +11,12 @@ export const Home = () => {
       direction="horizontal"
       className="w-full"
     >
-      <ResizablePanel defaultSize={65} className="flex flex-col gap-2">
+      <ResizablePanel defaultSize={75} className="flex flex-col gap-2">
             <CreatePostForm/>
             <Posts/>
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={35} className="p-2">
+      <ResizablePanel defaultSize={25} className="p-2">
       <Card className="w-[300px]" >
             <CardHeader className="w-full flex">
                 <div className="flex justify-between">
