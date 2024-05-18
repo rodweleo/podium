@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config()
 import cors from "cors";
 
-import { GenerativeModel, GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 
 const app = express();
@@ -17,12 +17,12 @@ app.post("/api/translate", async (req, res) => {
     const { payload } = req.body;
 
     try{
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-        const model: GenerativeModel = genAI.getGenerativeModel({
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const model = genAI.getGenerativeModel({
             model: "gemini-1.5-pro-latest",
         })
 
-        const modified_prompt: string = `Translate '${payload} to Swahili. Only return the translation. Keep it a sentence.'`
+        const modified_prompt = `Translate '${payload} to Swahili. Only return the translation. Keep it a sentence.'`
         const result = await model.generateContent(modified_prompt)
         const response = result.response;
         const text = response.text();
@@ -40,8 +40,8 @@ app.post("/api/moderate/text", async (req, res) => {
     const { payload } = req.body;
 
     try{
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-        const model: GenerativeModel = genAI.getGenerativeModel({
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const model = genAI.getGenerativeModel({
             model: "gemini-1.5-pro-latest",
         })
 
@@ -82,12 +82,9 @@ app.post("/api/moderate/text", async (req, res) => {
             })
         }else{
             return res.json({
-                moderation_output: "Send a notification to the user who published the post"
+                moderation_output: "Relevant moderators have been contacted. "
             })
         }
-        res.status(200).json({
-            moderation_output: text
-        })
     }catch(e){
         res.status(500).json(e)
     } 

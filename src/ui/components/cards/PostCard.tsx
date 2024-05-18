@@ -23,11 +23,13 @@ import { useTranslation } from "@/hooks/translation/useTranslation";
 import { useModeration } from "@/hooks/moderation/useModeration";
 import PulseLoader from "react-spinners/PulseLoader";
 import { MdVolumeUp } from "react-icons/md";
+import { useToast } from "@/components/ui/use-toast"
 
 export const PostCard = ({post}: {
     post: Post
 }) => {
     const [user, setUser] = useState<User>()
+    const { toast }  = useToast();
     const [isPaused, setIsPaused] = useState(false);
     const [utterance, setUtterance] = useState(null);
 
@@ -91,7 +93,10 @@ export const PostCard = ({post}: {
     const initiateModeration = async () => {
         try{
             const response = await moderate(post.content)
-            console.log( response);
+            toast({
+                title: "Report Report",
+                description: response
+            })
         }catch(e){
             
             console.log(e.response.data)

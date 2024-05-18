@@ -6,6 +6,7 @@ import { Home } from '@/pages/home/index.tsx'
 import { Notifications } from '@/pages/notifications/index.tsx'
 import { AppLayout } from '@/layouts/AppLayout.tsx'
 import { RootLayout } from '@/layouts/RootLayout.tsx'
+import { SignUp } from '@/pages/auth/sign-up'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "sign-in",
         element: <SignIn/>
+      },
+      {
+        path: "sign-up",
+        element: <SignUp/>
       },
       {
         path:"/",
